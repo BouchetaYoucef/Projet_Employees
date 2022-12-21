@@ -18,9 +18,9 @@ def run():
     gen_options = list(range(len(gen_display)))
     gen = st.selectbox("Gender",gen_options, format_func=lambda x: gen_display[x])
     
-    mar_display = ('Bachelors', 'Masters', 'PHD')
-    mar_options = list(range(len(mar_display)))
-    mar = st.selectbox("Education", mar_options, format_func=lambda x: mar_display[x])
+    edu_display = ('Bachelors', 'Masters', 'PHD')
+    edu_options = list(range(len(edu_display)))
+    edu = st.selectbox("Education", edu_options, format_func=lambda x: edu_display[x])
     
     join_display = ('2012', '2013', '2014', '2015', '2016', '2017', '2018')
     join_options = list(range(len(join_display)))
@@ -62,7 +62,7 @@ def run():
             duration = 360
         if dur == 4:
             duration = 480
-        features = [[gen, mar, dep, edu, emp, mon_income, co_mon_income, loan_amt, duration, cred, prop]]
+        features = [[gen, edu, join, city, emp, paym, expe, ever, age]]
         print(features)
         prediction = model.predict(features)
         lc = [str(i) for i in prediction]
