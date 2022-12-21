@@ -40,7 +40,7 @@ def run():
     
     expe_display = ('1', '2', '3')
     expe_options = list(range(len(expe_display)))
-    exep = st.selectbox("PaymentTier", expe_options, format_func=lambda x: expe_display[x])
+    expe = st.selectbox("PaymentTier", expe_options, format_func=lambda x: expe_display[x])
     
     ever_display = ('No', 'Yes')
     ever_options = list(range(len(ever_display)))
