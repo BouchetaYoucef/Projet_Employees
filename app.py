@@ -10,8 +10,8 @@ import pickle
 
     # st.sidebar.header("L'application qui prédit l'accord du crédi") 
 
-    new_title = '<p style="font-family:sans-serif; color:red; font-size: 20px;">BANK SIMPLONIEN</p>'
-    st.markdown(new_title, unsafe_allow_html=True)
+    # new_title = '<p style="font-family:sans-serif; color:red; font-size: 20px;">BANK SIMPLONIEN</p>'
+    # st.markdown(new_title, unsafe_allow_html=True)
     # title = '<p style="font-family:sans-serif; color:orange; font-size: 30px;">B SIMPLONIEN</p>'
     
     gen_display = ('Female','Male')
