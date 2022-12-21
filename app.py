@@ -112,4 +112,4 @@ if st.button("Submit"):
             st.success(
                 "Hello " + fn + ' '+' Congratulations!! you will get the loan from Bank'
             )
-run()
+# run()
