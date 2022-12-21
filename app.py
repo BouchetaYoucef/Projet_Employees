@@ -8,7 +8,7 @@ def run():
     # img1 = img1.resize((200, 200))
     # st.image(img1, use_column_width=False)
 
-    st.sidebar.header("L'application qui prédit le départ des employées")
+    st.sidebar.("L'application qui prédit le départ des employées")
 
     new_title = '<p style="font-family:sans-serif; color:red; font-size: 20px;">Leave or Not</p>'
     st.markdown(new_title, unsafe_allow_html=True)
