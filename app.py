@@ -1,12 +1,12 @@
 import streamlit as st
 from PIL import Image
 import pickle
-# model = pickle.load(open('model1.pkl', 'rb'))
+model = pickle.load(open('model1.pkl', 'rb'))
 
-# def run():
-#     img1 = Image.open('image4.jpg')
-#     img1 = img1.resize((200, 200))
-#     st.image(img1, use_column_width=False)
+def run():
+    img1 = Image.open('attrition.jpg')
+    img1 = img1.resize((200, 200))
+    st.image(img1, use_column_width=False)
 
     # st.sidebar.header("L'application qui prédit l'accord du crédi") 
 
@@ -112,4 +112,4 @@ if st.button("Submit"):
             st.success(
                 "Hello " + fn + ' '+' Congratulations!! you will get the loan from Bank'
             )
-# run()
+run()
