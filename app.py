@@ -1,115 +1,371 @@
-import streamlit as st
-from PIL import Image
+import numpy as np
+import scipy as sp
+import pandas as pd
+from flask import Flask,request,jsonify,render_template
 import pickle
-# model = pickle.load(open('model1.pkl', 'rb'))
 
-def run():
-    img1 = Image.open('attrition.jpg')
-    img1 = img1.resize((200, 200))
-    st.image(img1, use_column_width=False)
+app = Flask (__name__)
+model = pickle.load (open ('model.pkl','rb'))
 
-    st.sidebar.header("L'application qui prédit les demission des employées") 
 
-    new_title = '<p style="font-family:sans-serif; color:red; font-size: 20px;">"redattrition"</p>'
-    # st.markdown(new_title, unsafe_allow_html=True)
-    # title = '<p style="font-family:sans-serif; color:orange; font-size: 30px;">B SIMPLONIEN</p>'
-    
-gen_display = ('Female','Male')
-gen_options = list(range(len(gen_display)))
-gen = st.selectbox("Gender",gen_options, format_func=lambda x: gen_display[x])
- 
-edu_display = ('Bachelors', 'Masters', 'PHD')
-edu_options = list(range(len(edu_display)))
-edu = st.selectbox("Education", edu_options, format_func=lambda x: edu_display[x])
- 
-join_display = ('2012', '2013', '2014', '2015', '2016', '2017', '2018')
-join_options = list(range(len(join_display)))
-join = st.selectbox("JoiningYear ", join_options, format_func=lambda x: join_display[x])
+@app.route ('/')
+def home():
+    return render_template ('index.html')
 
-city_display = ('Bangalore', 'Pume', 'New Delhi')
-city_options = list(range(len(city_display)))
-city = st.selectbox("City", city_options, format_func=lambda x: city_display[x])
- 
-emp_display = ('Yes', 'No')
-emp_options = list(range(len(emp_display)))
-emp = st.selectbox("Self_Employed", emp_options, format_func=lambda x: emp_display[x])
 
-paym_display = ('1', '2', '3')
-paym_options = list(range(len(paym_display)))
-paym = st.selectbox("PaymentTier", paym_options, format_func=lambda x: paym_display[x])
-     
-# expe_display = ('1', '2', '3')
-# expe_options = list(range(len(expe_display)))
-# expe = st.selectbox("PaymentTier", expe_options, format_func=lambda x: expe_display[x])
- 
-# ever_display = ('No', 'Yes')
-# ever_options = list(range(len(ever_display)))
-# ever = st.selectbox("PaymentTier", ever_options, format_func=lambda x: ever_display[x])
- 
-age_display = ('22', '23', '24', '25', '26', '27','28', '29', '30','31','32', '33', '34', '35', '36', '37', '38', '39', '40', '41' )
-age_options = list(range(len(age_display)))
-age = st.selectbox("Age", age_options, format_func=lambda x: age_display[x])
-   
-    # gen_display = ('Female','Male')
-    # gen_options = list(range(len(gen_display)))
-    # gen = st.selectbox("Gender",gen_options, format_func=lambda x: gen_display[x])
-    
-    # mar_display = ('No', 'Yes')
-    # mar_options = list(range(len(mar_display)))
-    # mar = st.selectbox("Marital Status", mar_options, format_func=lambda x: mar_display[x])
-    
-    # dep_display = ('No', '1', '2', '3+')
-    # dep_options = list(range(len(dep_display)))
-    # dep = st.selectbox("Dependents", dep_options, format_func=lambda x: dep_display[x])
+@app.route ('/predict',methods=['POST','GET'])
+def predict():
+    """
+    For rendering results on HTML GUI
+    """
+    Age = request.form.get ("Age")
+    BusinessTravel = request.form['BusinessTravel']
+    DailyRate = request.form.get ('Daily Rate')
+    Department = request.form['Department']
+    DistanceFromHome = request.form.get ("Distance From Home")
+    Education = request.form.get ("Education")
+    EducationField = request.form['Education Field']
+    EnvironmentSatisfaction = request.form.get ("Environment Satisfaction")
+    Gender = request.form['Gender']
+    HourlyRate = request.form.get ("Hourly Rate")
+    JobInvolvement = request.form.get ("Environment Satisfaction")
+    JobLevel = request.form.get ("Job Level")
+    JobRole = request.form['Job Role']
+    JobSatisfaction = request.form.get ("Job Satisfaction")
+    MaritalStatus = request.form['Marital Status']
+    MonthlyIncome = request.form.get ("Monthly Income")
+    NumCompaniesWorked = request.form.get ("Number of Companies Worked in")
+    OverTime = request.form['Over Time']
+    PerformanceRating = request.form.get ("Performance Rating")
+    RelationshipSatisfaction = request.form.get ("Relationship Satisfaction")
+    StockOptionLevel = request.form.get ("Stock Option Level")
+    TotalWorkingYears = request.form.get ("Total Working Years")
+    TrainingTimesLastYear = request.form.get ("Training Times Last Year")
+    WorkLifeBalance = request.form.get ("Work Life Balance")
+    YearsAtCompany = request.form.get ("Years At Company")
+    YearsInCurrentRole = request.form.get ("Years In Current Role")
+    YearsSinceLastPromotion = request.form.get ("Years Since Last Promotion")
+    YearsWithCurrManager = request.form.get ("Years With Curr Manager")
 
-    # edu_display = ('Not Graduate', 'Graduate')
-    # edu_options = list(range(len(edu_display)))
-    # edu = st.selectbox("Education", edu_options, format_func=lambda x: edu_display[x])
-    
-    # emp_display = ('Yes', 'No')
-    # emp_options = list(range(len(emp_display)))
-    # emp = st.selectbox("Self_Employed", emp_options, format_func=lambda x: emp_display[x])
+    dict = {
+        'Age': int (Age),
+        'BusinessTravel': str (BusinessTravel),
+        'DailyRate': int (DailyRate),
+        'Department': Department,
+        'DistanceFromHome': int (DistanceFromHome),
+        'Education': Education,
+        'EducationField': str (EducationField),
+        'EnvironmentSatisfaction': int (EnvironmentSatisfaction),
+        'Gender': str (Gender),
+        'HourlyRate': int (HourlyRate),
+        'JobInvolvement': int (JobInvolvement),
+        'JobLevel': int (JobLevel),
+        'JobRole': JobRole,
+        'JobSatisfaction': int (JobSatisfaction),
+        'MaritalStatus': str (MaritalStatus),
+        'MonthlyIncome': int (MonthlyIncome),
+        'NumCompaniesWorked': int (NumCompaniesWorked),
+        'OverTime': str (OverTime),
+        'PerformanceRating': int (PerformanceRating),
+        'RelationshipSatisfaction': int (RelationshipSatisfaction),
+        'StockOptionLevel': StockOptionLevel,
+        'TotalWorkingYears': int (TotalWorkingYears),
+        'TrainingTimesLastYear': TrainingTimesLastYear,
+        'WorkLifeBalance': int (WorkLifeBalance),
+        'YearsAtCompany': int (YearsAtCompany),
+        'YearsInCurrentRole': int (YearsInCurrentRole),
+        'YearsSinceLastPromotion': int (YearsSinceLastPromotion),
+        'YearsWithCurrManager': int (YearsWithCurrManager)
+    }
 
-    # prop_display = ('Rural', 'Semi-Urban', 'Urban')
-    # prop_options = list(range(len(prop_display)))
-    # prop = st.selectbox("Property Area", prop_options, format_func=lambda x: prop_display[x])
-    
-    # cred_display = ('1.0', '0.0')
-    # cred_options = list(range(len(cred_display)))
-    # cred = st.selectbox("Credit History", cred_options, format_func=lambda x: cred_display[x])
-    
-    # mon_income = st.number_input("Applicant Income($)", value=0)
+    df = pd.DataFrame ([dict])
 
-    # co_mon_income = st.number_input("CoApplicant Income($)", value=0)
+    df['Total_Satisfaction'] = (df['EnvironmentSatisfaction'] +
+                                df['JobInvolvement'] +
+                                df['JobSatisfaction'] +
+                                df['RelationshipSatisfaction'] +
+                                df['WorkLifeBalance']) / 5
 
-    # loan_amt = st.number_input("Loan Amount", value=0)
+    # Drop Columns
+    df.drop (
+        ['EnvironmentSatisfaction','JobInvolvement','JobSatisfaction','RelationshipSatisfaction','WorkLifeBalance'],
+        axis=1,inplace=True)
 
-    # dur_display = ['2 Month', '6 Month', '8 Month', '1 Year', '16 Month', '360 Month']
-    # dur_options = range(len(dur_display))
-    # dur = st.selectbox("Loan Duration", dur_options, format_func=lambda x: dur_display[x])
-if st.button("Submit"):
-        duration = 0
-        if dur == 0:
-            duration = 60
-        if dur == 1:
-            duration = 180
-        if dur == 2:
-            duration = 240
-        if dur == 3:
-            duration = 360
-        if dur == 4:
-            duration = 480
-        features = [[gen, mar, dep, edu, emp, mon_income, co_mon_income, loan_amt, duration, cred, prop]]
-        print(features)
-        prediction = model.predict(features)
-        lc = [str(i) for i in prediction]
-        ans = int("".join(lc))
-        if ans == 0:
-            st.error(
-                "Hello " + fn +' you will not get a loan as per the calculations of the bank.'
-            )
-        else:
-            st.success(
-                "Hello " + fn + ' '+' Congratulations!! you will get the loan from Bank'
-            )
-run()
+    # Convert Total satisfaction into boolean
+    df['Total_Satisfaction_bool'] = df['Total_Satisfaction'].apply (lambda x: 1 if x >= 2.8 else 0)
+    df.drop ('Total_Satisfaction',axis=1,inplace=True)
+
+    # It can be observed that the rate of attrition of employees below age of 35 is high
+    df['Age_bool'] = df['Age'].apply (lambda x: 1 if x < 35 else 0)
+    df.drop ('Age',axis=1,inplace=True)
+
+    # It can be observed that the employees are more likey the drop the job if dailyRate less than 800
+    df['DailyRate_bool'] = df['DailyRate'].apply (lambda x: 1 if x < 800 else 0)
+    df.drop ('DailyRate',axis=1,inplace=True)
+
+    # Employees working at R&D Department have higher attrition rate
+    df['Department_bool'] = df['Department'].apply (lambda x: 1 if x == 'Research & Development' else 0)
+    df.drop ('Department',axis=1,inplace=True)
+
+    # Rate of attrition of employees is high if DistanceFromHome > 10
+    df['DistanceFromHome_bool'] = df['DistanceFromHome'].apply (lambda x: 1 if x > 10 else 0)
+    df.drop ('DistanceFromHome',axis=1,inplace=True)
+
+    # Employees are more likey to drop the job if the employee is working as Laboratory Technician
+    df['JobRole_bool'] = df['JobRole'].apply (lambda x: 1 if x == 'Laboratory Technician' else 0)
+    df.drop ('JobRole',axis=1,inplace=True)
+
+    # Employees are more likey to the drop the job if the employee's hourly rate < 65
+    df['HourlyRate_bool'] = df['HourlyRate'].apply (lambda x: 1 if x < 65 else 0)
+    df.drop ('HourlyRate',axis=1,inplace=True)
+
+    # Employees are more likey to the drop the job if the employee's MonthlyIncome < 4000
+    df['MonthlyIncome_bool'] = df['MonthlyIncome'].apply (lambda x: 1 if x < 4000 else 0)
+    df.drop ('MonthlyIncome',axis=1,inplace=True)
+
+    # Rate of attrition of employees is high if NumCompaniesWorked < 3
+    df['NumCompaniesWorked_bool'] = df['NumCompaniesWorked'].apply (lambda x: 1 if x > 3 else 0)
+    df.drop ('NumCompaniesWorked',axis=1,inplace=True)
+
+    # Employees are more likey to the drop the job if the employee's TotalWorkingYears < 8
+    df['TotalWorkingYears_bool'] = df['TotalWorkingYears'].apply (lambda x: 1 if x < 8 else 0)
+    df.drop ('TotalWorkingYears',axis=1,inplace=True)
+
+    # Employees are more likey to the drop the job if the employee's YearsAtCompany < 3
+    df['YearsAtCompany_bool'] = df['YearsAtCompany'].apply (lambda x: 1 if x < 3 else 0)
+    df.drop ('YearsAtCompany',axis=1,inplace=True)
+
+    # Employees are more likey to the drop the job if the employee's YearsInCurrentRole < 3
+    df['YearsInCurrentRole_bool'] = df['YearsInCurrentRole'].apply (lambda x: 1 if x < 3 else 0)
+    df.drop ('YearsInCurrentRole',axis=1,inplace=True)
+
+    # Employees are more likely to the drop the job if the employee's YearsSinceLastPromotion < 1
+    df['YearsSinceLastPromotion_bool'] = df['YearsSinceLastPromotion'].apply (lambda x: 1 if x < 1 else 0)
+    df.drop ('YearsSinceLastPromotion',axis=1,inplace=True)
+
+    # Employees are more likely to the drop the job if the employee's YearsWithCurrManager < 1
+    df['YearsWithCurrManager_bool'] = df['YearsWithCurrManager'].apply (lambda x: 1 if x < 1 else 0)
+    df.drop ('YearsWithCurrManager',axis=1,inplace=True)
+
+    # Convert Categorical to Numerical
+    # Buisness Travel
+    if BusinessTravel == 'Rarely':
+        df['BusinessTravel_Rarely'] = 1
+        df['BusinessTravel_Frequently'] = 0
+        df['BusinessTravel_No_Travel'] = 0
+    elif BusinessTravel == 'Frequently':
+        df['BusinessTravel_Rarely'] = 0
+        df['BusinessTravel_Frequently'] = 1
+        df['BusinessTravel_No_Travel'] = 0
+    else:
+        df['BusinessTravel_Rarely'] = 0
+        df['BusinessTravel_Frequently'] = 0
+        df['BusinessTravel_No_Travel'] = 1
+    df.drop ('BusinessTravel',axis=1,inplace=True)
+
+    # Education
+    if Education == 1:
+        df['Education_1'] = 1
+        df['Education_2'] = 0
+        df['Education_3'] = 0
+        df['Education_4'] = 0
+        df['Education_5'] = 0
+    elif Education == 2:
+        df['Education_1'] = 0
+        df['Education_2'] = 1
+        df['Education_3'] = 0
+        df['Education_4'] = 0
+        df['Education_5'] = 0
+    elif Education == 3:
+        df['Education_1'] = 0
+        df['Education_2'] = 0
+        df['Education_3'] = 1
+        df['Education_4'] = 0
+        df['Education_5'] = 0
+    elif Education == 4:
+        df['Education_1'] = 0
+        df['Education_2'] = 0
+        df['Education_3'] = 0
+        df['Education_4'] = 1
+        df['Education_5'] = 0
+    else:
+        df['Education_1'] = 0
+        df['Education_2'] = 0
+        df['Education_3'] = 0
+        df['Education_4'] = 0
+        df['Education_5'] = 1
+    df.drop ('Education',axis=1,inplace=True)
+
+    # EducationField
+    if EducationField == 'Life Sciences':
+        df['EducationField_Life_Sciences'] = 1
+        df['EducationField_Medical'] = 0
+        df['EducationField_Marketing'] = 0
+        df['EducationField_Technical_Degree'] = 0
+        df['Education_Human_Resources'] = 0
+        df['Education_Other'] = 0
+    elif EducationField == 'Medical':
+        df['EducationField_Life_Sciences'] = 0
+        df['EducationField_Medical'] = 1
+        df['EducationField_Marketing'] = 0
+        df['EducationField_Technical_Degree'] = 0
+        df['Education_Human_Resources'] = 0
+        df['Education_Other'] = 0
+    elif EducationField == 'Marketing':
+        df['EducationField_Life_Sciences'] = 0
+        df['EducationField_Medical'] = 0
+        df['EducationField_Marketing'] = 1
+        df['EducationField_Technical_Degree'] = 0
+        df['Education_Human_Resources'] = 0
+        df['Education_Other'] = 0
+    elif EducationField == 'Technical Degree':
+        df['EducationField_Life_Sciences'] = 0
+        df['EducationField_Medical'] = 0
+        df['EducationField_Marketing'] = 0
+        df['EducationField_Technical_Degree'] = 1
+        df['Education_Human_Resources'] = 0
+        df['Education_Other'] = 0
+    elif EducationField == 'Human Resources':
+        df['EducationField_Life_Sciences'] = 0
+        df['EducationField_Medical'] = 0
+        df['EducationField_Marketing'] = 0
+        df['EducationField_Technical_Degree'] = 0
+        df['Education_Human_Resources'] = 1
+        df['Education_Other'] = 0
+    else:
+        df['EducationField_Life_Sciences'] = 0
+        df['EducationField_Medical'] = 0
+        df['EducationField_Marketing'] = 0
+        df['EducationField_Technical_Degree'] = 0
+        df['Education_Human_Resources'] = 1
+        df['Education_Other'] = 1
+    df.drop ('EducationField',axis=1,inplace=True)
+
+    # Gender
+    if Gender == 'Male':
+        df['Gender_Male'] = 1
+        df['Gender_Female'] = 0
+    else:
+        df['Gender_Male'] = 0
+        df['Gender_Female'] = 1
+    df.drop ('Gender',axis=1,inplace=True)
+
+    # Marital Status
+    if MaritalStatus == 'Married':
+        df['MaritalStatus_Married'] = 1
+        df['MaritalStatus_Single'] = 0
+        df['MaritalStatus_Divorced'] = 0
+    elif MaritalStatus == 'Single':
+        df['MaritalStatus_Married'] = 0
+        df['MaritalStatus_Single'] = 1
+        df['MaritalStatus_Divorced'] = 0
+    else:
+        df['MaritalStatus_Married'] = 0
+        df['MaritalStatus_Single'] = 0
+        df['MaritalStatus_Divorced'] = 1
+    df.drop ('MaritalStatus',axis=1,inplace=True)
+
+    # Overtime
+    if OverTime == 'Yes':
+        df['OverTime_Yes'] = 1
+        df['OverTime_No'] = 0
+    else:
+        df['OverTime_Yes'] = 0
+        df['OverTime_No'] = 1
+    df.drop ('OverTime',axis=1,inplace=True)
+
+    # Stock Option Level
+    if StockOptionLevel == 0:
+        df['StockOptionLevel_0'] = 1
+        df['StockOptionLevel_1'] = 0
+        df['StockOptionLevel_2'] = 0
+        df['StockOptionLevel_3'] = 0
+    elif StockOptionLevel == 1:
+        df['StockOptionLevel_0'] = 0
+        df['StockOptionLevel_1'] = 1
+        df['StockOptionLevel_2'] = 0
+        df['StockOptionLevel_3'] = 0
+    elif StockOptionLevel == 2:
+        df['StockOptionLevel_0'] = 0
+        df['StockOptionLevel_1'] = 0
+        df['StockOptionLevel_2'] = 1
+        df['StockOptionLevel_3'] = 0
+    else:
+        df['StockOptionLevel_0'] = 0
+        df['StockOptionLevel_1'] = 0
+        df['StockOptionLevel_2'] = 0
+        df['StockOptionLevel_3'] = 1
+    df.drop ('StockOptionLevel',axis=1,inplace=True)
+
+    # Training Time Last Year
+    if TrainingTimesLastYear == 0:
+        df['TrainingTimesLastYear_0'] = 1
+        df['TrainingTimesLastYear_1'] = 0
+        df['TrainingTimesLastYear_2'] = 0
+        df['TrainingTimesLastYear_3'] = 0
+        df['TrainingTimesLastYear_4'] = 0
+        df['TrainingTimesLastYear_5'] = 0
+        df['TrainingTimesLastYear_6'] = 0
+    elif TrainingTimesLastYear == 1:
+        df['TrainingTimesLastYear_0'] = 0
+        df['TrainingTimesLastYear_1'] = 1
+        df['TrainingTimesLastYear_2'] = 0
+        df['TrainingTimesLastYear_3'] = 0
+        df['TrainingTimesLastYear_4'] = 0
+        df['TrainingTimesLastYear_5'] = 0
+        df['TrainingTimesLastYear_6'] = 0
+    elif TrainingTimesLastYear == 2:
+        df['TrainingTimesLastYear_0'] = 0
+        df['TrainingTimesLastYear_1'] = 0
+        df['TrainingTimesLastYear_2'] = 1
+        df['TrainingTimesLastYear_3'] = 0
+        df['TrainingTimesLastYear_4'] = 0
+        df['TrainingTimesLastYear_5'] = 0
+        df['TrainingTimesLastYear_6'] = 0
+    elif TrainingTimesLastYear == 3:
+        df['TrainingTimesLastYear_0'] = 0
+        df['TrainingTimesLastYear_1'] = 0
+        df['TrainingTimesLastYear_2'] = 0
+        df['TrainingTimesLastYear_3'] = 1
+        df['TrainingTimesLastYear_4'] = 0
+        df['TrainingTimesLastYear_5'] = 0
+        df['TrainingTimesLastYear_6'] = 0
+    elif TrainingTimesLastYear == 4:
+        df['TrainingTimesLastYear_0'] = 0
+        df['TrainingTimesLastYear_1'] = 0
+        df['TrainingTimesLastYear_2'] = 0
+        df['TrainingTimesLastYear_3'] = 0
+        df['TrainingTimesLastYear_4'] = 1
+        df['TrainingTimesLastYear_5'] = 0
+        df['TrainingTimesLastYear_6'] = 0
+    elif TrainingTimesLastYear == 5:
+        df['TrainingTimesLastYear_0'] = 0
+        df['TrainingTimesLastYear_1'] = 0
+        df['TrainingTimesLastYear_2'] = 0
+        df['TrainingTimesLastYear_3'] = 0
+        df['TrainingTimesLastYear_4'] = 0
+        df['TrainingTimesLastYear_5'] = 1
+        df['TrainingTimesLastYear_6'] = 0
+    else:
+        df['TrainingTimesLastYear_0'] = 0
+        df['TrainingTimesLastYear_1'] = 0
+        df['TrainingTimesLastYear_2'] = 0
+        df['TrainingTimesLastYear_3'] = 0
+        df['TrainingTimesLastYear_4'] = 0
+        df['TrainingTimesLastYear_5'] = 0
+        df['TrainingTimesLastYear_6'] = 1
+    df.drop ('TrainingTimesLastYear',axis=1,inplace=True)
+
+    # df.to_csv ('features.csv',index=False)
+
+    prediction = model.predict (df)
+
+    if prediction == 0:
+        return render_template ('index.html',prediction_text='Employee Might Not Leave The Job')
+
+    else:
+        return render_template ('index.html',prediction_text='Employee Might Leave The Job')
+
+
+if __name__ == "__main__":
+    app.run (debug=True)
