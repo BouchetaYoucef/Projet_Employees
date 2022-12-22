@@ -358,7 +358,7 @@ def predict():
 
     # df.to_csv ('features.csv',index=False)
 
-    prediction = model.predict (df)
+    # prediction = model.predict (data)
 
     if prediction == 0:
         return render_template ('index.html',prediction_text='Employee Might Not Leave The Job')
