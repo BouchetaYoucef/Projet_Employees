@@ -1,16 +1,16 @@
 import numpy as np
 import scipy as sp
 import pandas as pd
-from flask import Flask,request,jsonify,render_template
+from streamlit import Flask,request,jsonify,render_template
 import pickle
 
-app = Flask (__name__)
-# model = pickle.load (open ('model.pkl','rb'))
+# app = Streamlit (__name__)
+model = pickle.load (open ('model.pkl','rb'))
 
 
-@app.route ('/')
-def home():
-    return render_template ('index.html')
+# @app.route ('/')
+# def home():
+#     return render_template ('index.html')
 
 
 @app.route ('/predict',methods=['POST','GET'])
