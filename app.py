@@ -1,7 +1,8 @@
 import numpy as np
 import scipy as sp
 import pandas as pd
-from streamlit import Flask,request,jsonify,render_template
+import streamlit
+# from streamlit import Flask,request,jsonify,render_template
 import pickle
 
 # app = Streamlit (__name__)
