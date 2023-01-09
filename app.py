@@ -5,7 +5,7 @@ import streamlit
 # from streamlit import Flask,request,jsonify,render_template
 import pickle
 
-app = Streamlit (__name__)
+# app = Streamlit (__name__)s
 model = pickle.load (open ('model_pkl.pickle.pkl','rb'))
 
 
