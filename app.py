@@ -14,7 +14,7 @@ import pickle
 #     return render_template ('index.html')
 
 
-@app.route ('/predict',methods=['POST','GET'])
+# @app.route ('/predict',methods=['POST','GET'])
 def predict():
     """
     For rendering results on HTML GUI
