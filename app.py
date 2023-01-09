@@ -7,7 +7,7 @@ import streamlit as st
 from PIL import Image
 import pickle
 
-app = Streamlit (__name__)
+# app = Streamlit (__name__)
 model = pickle.load (open ('model.pkl','rb'))
 
 # @app.route ('/')
@@ -15,7 +15,7 @@ def home():
     return render_template ('index.html')
 
 
-@app.route ('/predict',methods=['POST','GET'])
+# @app.route ('/predict',methods=['POST','GET'])
 def predict():
     """
     For rendering results on HTML GUI
