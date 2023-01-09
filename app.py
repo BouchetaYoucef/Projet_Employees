@@ -6,7 +6,14 @@ import streamlit
 import pickle
 
 # app = Streamlit (__name__)s
-# model = pickle.load (open ('model_pkl.pickle.pkl','rb'))s
+model = pickle.load (open ('model_pkl.pickle.pkl','rb'))
+
+def run():
+    img1 = image.open('attrition.jpg')
+    img1 = img1.resize((156,145))
+    st.image(img1,use_column_width=False)
+    # st.title("Bank Simplonien ")
+run()
 
 
 # @app.route ('/')
