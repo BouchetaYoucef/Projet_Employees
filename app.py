@@ -11,11 +11,11 @@ def main():
         st.sidebar.header('Slide the sliders to change the variables.')
         age = st.sidebar.slider('Age of employee', 22,41,35)
         
-        dep = st.selectbox('Department', ['Sales', 'Human Resources', 'Research & Development'])
-        if dep == "Sales" or "Human Resources" :
-            dept = 0
+        City = st.selectbox('city', ['Bangalor,', 'Pume City', 'New Delhi'])
+        if City == "" or "" :
+            City = 0
         else :
-            dept = 1
+            City = 1
         
         # distancefromhome = st.sidebar.slider('Distance from home(km)',0,50,5)
         
@@ -131,7 +131,7 @@ def main():
         else :
             com_skills = 5
             
-        inp = [age,dept,education, employeenumber,env_sat, gender,job_inv,jobrole,job_sat,mar_stat,income, num_com,overtime, stocks,total_exp,training,years_com,years_role,years_man,com_skills]
+        inp = [age,City,education, employeenumber,env_sat, gender,job_inv,jobrole,job_sat,mar_stat,income, num_com,overtime, stocks,total_exp,training,years_com,years_role,years_man,com_skills]
         
         return inp
     
