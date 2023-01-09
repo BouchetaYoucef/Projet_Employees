@@ -11,7 +11,7 @@ def main():
         st.sidebar.header('Slide the sliders to change the variables.')
         age = st.sidebar.slider('Age of employee', 22,41,35)
         
-        City = st.selectbox('city', ['Bangalor,', 'Pume City', 'New Delhi'])
+        City = st.selectbox('city', ['Bangalor', 'Pume City', 'New Delhi'])
         if City == "" or "" :
             City = 0
         else :
