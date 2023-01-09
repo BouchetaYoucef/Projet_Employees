@@ -6,7 +6,7 @@ import streamlit
 import pickle
 
 # app = Streamlit (__name__)s
-model = pickle.load (open ('model_pkl.pickle.pkl','rb'))
+# model = pickle.load (open ('model_pkl.pickle.pkl','rb'))
 
 def run():
     img1 = image.open('attrition.jpg')
