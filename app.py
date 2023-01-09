@@ -17,7 +17,7 @@ def main():
         else :
             dept = 1
         
-        distancefromhome = st.sidebar.slider('Distance from home(km)',0,50,5)
+        # distancefromhome = st.sidebar.slider('Distance from home(km)',0,50,5)
         
         efield = st.selectbox('Education Field',['Human Resources','Marketing','Technical','Life Sciences','Medical', 'Other'])
         if efield == "Human Resources" or "Marketing" or "Technical" :
@@ -131,7 +131,7 @@ def main():
         else :
             com_skills = 5
             
-        inp = [age,dept,distancefromhome,edu_field, employeenumber,env_sat, gender,job_inv,jobrole,job_sat,mar_stat,income, num_com,overtime, stocks,total_exp,training,years_com,years_role,years_man,com_skills]
+        inp = [age,dept,edu_field, employeenumber,env_sat, gender,job_inv,jobrole,job_sat,mar_stat,income, num_com,overtime, stocks,total_exp,training,years_com,years_role,years_man,com_skills]
         
         return inp
     
