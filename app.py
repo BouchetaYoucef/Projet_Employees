@@ -1,27 +1,21 @@
 import numpy as np
-import scipy as sp
+# import scipy as sp
 import pandas as pd
-import streamlit
-# from streamlit import Flask,request,jsonify,render_template
+from flask import Flask,request,jsonify,render_template
+import pickle
+import streamlit as st
+from PIL import Image
 import pickle
 
-# app = Streamlit (__name__)s
-# model = pickle.load (open ('model_pkl.pickle.pkl','rb'))
+# app = Flask (__name__)
+model = pickle.load (open ('model.pkl','rb'))
 
-def run():
-    img1 = Image.open('attrition.jpg')
-    img1 = img1.resize((156,145))
-    st.image(img1,use_column_width=False)
-    st.title("Projet employées ")
-run()
+@app.route ('/')
+def home():
+    return render_template ('index.html')
 
 
-# @app.route ('/')
-# def home():
-#     return render_template ('index.html')
-
-
-# @app.route ('/predict',methods=['POST','GET'])
+@app.route ('/predict',methods=['POST','GET'])
 def predict():
     """
     For rendering results on HTML GUI
@@ -364,9 +358,9 @@ def predict():
         df['TrainingTimesLastYear_6'] = 1
     df.drop ('TrainingTimesLastYear',axis=1,inplace=True)
 
-    df.to_csv ('features.csv',index=False)
+    # df.to_csv ('features.csv',index=False)
 
-    prediction = model.predict (data)
+    prediction = model.predict (df)
 
     if prediction == 0:
         return render_template ('index.html',prediction_text='Employee Might Not Leave The Job')
@@ -375,5 +369,5 @@ def predict():
         return render_template ('index.html',prediction_text='Employee Might Leave The Job')
 
 
-# if __name__ == "__main__":
-    # app.run (debug=True)
+if __name__ == "__main__":
+    app.run (debug=True)
