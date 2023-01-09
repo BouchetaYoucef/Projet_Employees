@@ -7,7 +7,7 @@ import streamlit as st
 from PIL import Image
 import pickle
 
-# app = Flask (__name__)
+app = Streamlit (__name__)
 model = pickle.load (open ('model.pkl','rb'))
 
 @app.route ('/')
@@ -358,7 +358,7 @@ def predict():
         df['TrainingTimesLastYear_6'] = 1
     df.drop ('TrainingTimesLastYear',axis=1,inplace=True)
 
-    # df.to_csv ('features.csv',index=False)
+    df.to_csv ('features.csv',index=False)
 
     prediction = model.predict (df)
 
