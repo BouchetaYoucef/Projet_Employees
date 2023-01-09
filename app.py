@@ -6,7 +6,7 @@ import streamlit
 import pickle
 
 # app = Streamlit (__name__)
-model = pickle.load (open ('model_pkl.pickle.pkl','rb'))
+# model = pickle.load (open ('model_pkl.pickle.pkl','rb'))
 
 
 # @app.route ('/')
