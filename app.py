@@ -145,7 +145,7 @@ def main():
         return inp
     
     df = input_features()
-    model = pickle.load(open('model_pkl.pickle.pkl','rb'))
+    # model = pickle.load(open('model_pkl.pickle.pkl','rb'))
     ans = model.predict_proba([df])[0][1]
     ans = round(100*ans,2)
     # st.subheader(f'The probability of employee being released is {ans} percent.')
