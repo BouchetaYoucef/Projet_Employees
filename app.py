@@ -5,8 +5,8 @@ import streamlit
 # from streamlit import Flask,request,jsonify,render_template
 import pickle
 
-# app = Streamlit (__name__)
-# model = pickle.load (open ('model_pkl.pickle.pkl','rb'))
+app = Streamlit (__name__)
+model = pickle.load (open ('model_pkl.pickle.pkl','rb'))
 
 
 # @app.route ('/')
@@ -14,8 +14,8 @@ import pickle
 #     return render_template ('index.html')
 
 
-# @app.route ('/predict',methods=['POST','GET'])
-# def predict():
+@app.route ('/predict',methods=['POST','GET'])
+def predict():
     """
     For rendering results on HTML GUI
     """
@@ -357,16 +357,16 @@ import pickle
         df['TrainingTimesLastYear_6'] = 1
     df.drop ('TrainingTimesLastYear',axis=1,inplace=True)
 
-    # df.to_csv ('features.csv',index=False)
+    df.to_csv ('features.csv',index=False)
 
-    # prediction = model.predict (data)
+    prediction = model.predict (data)
 
-    # if prediction == 0:
-    #     return render_template ('index.html',prediction_text='Employee Might Not Leave The Job')
+    if prediction == 0:
+        return render_template ('index.html',prediction_text='Employee Might Not Leave The Job')
 
-    # else:
-    #     return render_template ('index.html',prediction_text='Employee Might Leave The Job')
+    else:
+        return render_template ('index.html',prediction_text='Employee Might Leave The Job')
 
 
-# if __name__ == "__main__":
-#     app.run (debug=True)
+if __name__ == "__main__":
+    app.run (debug=True)
