@@ -7,8 +7,8 @@ from PIL import Image
 model = pickle.load (open ('model.pkl','rb'))
 
 def run():
-    img1 = Image.open('Employees.jpg')
-    img1 = img1.resize((400,400))
+    img1 = Image.open('attrition.jpg')
+    img1 = img1.resize((200,400))
     st.image(img1,use_column_width=False)
     # st.title("Bank Simplonien ")
 run()
