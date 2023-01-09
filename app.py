@@ -14,8 +14,8 @@ import pickle
 #     return render_template ('index.html')
 
 
-@app.route ('/predict',methods=['POST','GET'])
-def predict():
+# @app.route ('/predict',methods=['POST','GET'])
+# def predict():
     """
     For rendering results on HTML GUI
     """
@@ -361,12 +361,12 @@ def predict():
 
     # prediction = model.predict (data)
 
-    if prediction == 0:
-        return render_template ('index.html',prediction_text='Employee Might Not Leave The Job')
+    # if prediction == 0:
+    #     return render_template ('index.html',prediction_text='Employee Might Not Leave The Job')
 
-    else:
-        return render_template ('index.html',prediction_text='Employee Might Leave The Job')
+    # else:
+    #     return render_template ('index.html',prediction_text='Employee Might Leave The Job')
 
 
-if __name__ == "__main__":
-    app.run (debug=True)
+# if __name__ == "__main__":
+#     app.run (debug=True)
