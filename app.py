@@ -103,7 +103,7 @@ def main():
         else :
             stocks = 2
             
-        total_exp = st.number_input("Total experience of employee",0.,35.,step = 1.)
+        ExperienceInCurrentDomain = st.number_input("Experience In Current Domain",0.,7.,step = 1.)
         
         training = st.number_input("Number of times employee did training",0.,7., step = 1.)
         
@@ -131,7 +131,7 @@ def main():
         else :
             com_skills = 5
             
-        inp = [age,City,education, employeenumber,env_sat, gender,job_inv,jobrole,job_sat,mar_stat,income, num_com,overtime, stocks,total_exp,training,years_com,years_role,years_man,com_skills]
+        inp = [age,City,education, employeenumber,env_sat, gender,job_inv,jobrole,job_sat,mar_stat,income, num_com,overtime, stocks,ExperienceInCurrentDomain,training,years_com,years_role,years_man,com_skills]
         
         return inp
     
