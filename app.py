@@ -135,10 +135,10 @@ def main():
         
         return inp
     
-    # df = input_features()
-    # model = pickle.load(open('model1.pkl','rb'))
-    # ans = model.predict_proba([df])[0][0]
-    # ans = round(100*ans,2)
+    df = input_features()
+    model = pickle.load(open('model_pkl.pickle.pkl','rb'))
+    ans = model.predict_proba([df])[0][0]
+    ans = round(100*ans,2)
     # st.subheader(f'The probability of employee being released is {ans} percent.')
     
 if __name__ == "__main__" :
