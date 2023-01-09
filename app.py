@@ -4,6 +4,9 @@ import pickle
 import streamlit as st
 from PIL import Image
 
+model = pickle.load (open ('model.pkl','rb'))
+
+
 def main():
     st.header('Employee Attrition Predictor')
     # st.subheader(""" Made with :heart: by Pranav Garg and Swapnil Srivastava """)
@@ -67,13 +70,13 @@ def main():
         else :
             jobrole = 5
             
-        jobsat = st.selectbox('Job Satisfaction', ['Low','Medium', 'High','Very High'])
-        if jobsat == "Low" :
-            job_sat = 1
-        elif jobsat == "Medium" or "High" :
-            job_sat = 2
+        EverBenched = st.selectbox('EverBenched', ['Yes','No'])
+        if EverBenched == "Yes" :
+            EverBenched = 1
+        elif EverBenched== "yes" or "No" :
+            EverBenched = 2
         else :
-            job_sat = 3
+            EverBenched = 3
             
         mar = st.selectbox('Marital Status',['Married','Divorced','Single'])
         if mar == "Married" or "Divorced" :
@@ -131,13 +134,13 @@ def main():
         else :
             com_skills = 5
             
-        inp = [age,City,education, employeenumber,env_sat, gender,job_inv,jobrole,job_sat,mar_stat,income, num_com,overtime, stocks,ExperienceInCurrentDomain,training,years_com,years_role,years_man,com_skills]
+        inp = [age,City,education, employeenumber,env_sat, gender,job_inv,jobrole,EverBenched,mar_stat,income, num_com,overtime, stocks,ExperienceInCurrentDomain,training,years_com,years_role,years_man,com_skills]
         
         return inp
     
     df = input_features()
     model = pickle.load(open('model_pkl.pickle.pkl','rb'))
-    ans = model.predict_proba([df])[0][0]
+    ans = model.predict_proba([df])[0][1]
     ans = round(100*ans,2)
     # st.subheader(f'The probability of employee being released is {ans} percent.')
     
