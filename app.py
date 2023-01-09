@@ -9,7 +9,7 @@ def main():
     # st.subheader(""" Made with :heart: by Pranav Garg and Swapnil Srivastava """)
     def input_features() :
         st.sidebar.header('Slide the sliders to change the variables.')
-        age = st.sidebar.slider('Age of employee', 18,65,30)
+        age = st.sidebar.slider('Age of employee', 22,41,35)
         
         dep = st.selectbox('Department', ['Sales', 'Human Resources', 'Research & Development'])
         if dep == "Sales" or "Human Resources" :
@@ -19,11 +19,11 @@ def main():
         
         # distancefromhome = st.sidebar.slider('Distance from home(km)',0,50,5)
         
-        efield = st.selectbox('Education Field',['Human Resources','Marketing','Technical','Life Sciences','Medical', 'Other'])
-        if efield == "Human Resources" or "Marketing" or "Technical" :
-            edu_field = 1
+        educ = st.selectbox('Education',['Bachelors','Masters','PHD'])
+        if educ == "" or "" or "" :
+            education = 1
         else :
-            edu_field = 0
+            education = 0
         
         en = st.sidebar.slider('Number of people in the team', 1, 2000, 100)
         if en <1495 :
@@ -131,7 +131,7 @@ def main():
         else :
             com_skills = 5
             
-        inp = [age,dept,edu_field, employeenumber,env_sat, gender,job_inv,jobrole,job_sat,mar_stat,income, num_com,overtime, stocks,total_exp,training,years_com,years_role,years_man,com_skills]
+        inp = [age,dept,education, employeenumber,env_sat, gender,job_inv,jobrole,job_sat,mar_stat,income, num_com,overtime, stocks,total_exp,training,years_com,years_role,years_man,com_skills]
         
         return inp
     
