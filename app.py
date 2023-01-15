@@ -91,7 +91,7 @@ def prediction(Education, JoiningYear, City, PaymentTier, Age, Gender, EverBench
 def main():
     # front end elements of the web page
     html_temp = """
-    <div style ="background-color:yellow;padding:13px">
+    <div style ="background-color:orange;padding:13px">
     <h1 style ="color:white;text-align:center;">Attrition employee</h1>
     </div>
     """
