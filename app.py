@@ -13,38 +13,38 @@ def run():
     # st.title("Bank Simplonien ")
 run()
 
-def prediction(Gender, Married, Dependents, Employment_Status, ApplicantIncome, LoanAmount, Credit_History):
+def prediction(Education, JoiningYear, City, Age, Gender, EverBenched, ExperienceInCurrentDomain):
         
     #Pre-Processing user input
-    ## For gender
-    gen_display = ('Female','Male')
-    gen_options = list(range(len(gen_display)))
-    gen = st.selectbox("Gender",gen_options, format_func=lambda x: gen_display[x])
-
-    ## For Marital Status
-    mar_display = ('No','Yes')
-    mar_options = list(range(len(mar_display)))
-    mar = st.selectbox("Marital Status", mar_options, format_func=lambda x: mar_display[x])
-
-    ## No of dependets
-    dep_display = ('0','1','2','3', '+')
-    dep_options = list(range(len(dep_display)))
-    dep = st.selectbox("Dependents",  dep_options, format_func=lambda x: dep_display[x])
-
-    ## For edu
-    edu_display = ('Not Graduate','Graduate')
-    edu_options = list(range(len(edu_display)))
-    edu = st.selectbox("Education",edu_options, format_func=lambda x: edu_display[x])
-
-    ## For emp status
-    emp_display = ('Job','Business')
-    emp_options = list(range(len(emp_display)))
-    emp = st.selectbox("Employment_Status",emp_options, format_func=lambda x: emp_display[x])
-
-    ## For Property status
-    prop_display = ('Rural','Semi-Urban','Urban')
-    prop_options = list(range(len(prop_display)))
-    prop = st.selectbox("Property Area",prop_options, format_func=lambda x: prop_display[x])
+    ## For Education
+    Education = ('Bachelors','Masters','PHD')
+    Education = list(range(len(Education)))
+    Education = st.selectbox("Education", Education, format_func=lambda x: Education[x])
+    
+    ## For JoiningYear
+    JoiningYear = ('','')
+    JoiningYear = list(range(len(JoiningYear)))
+    JoiningYear = st.selectbox("JoiningYear",JoiningYear, format_func=lambda x: JoiningYear[x])
+    
+     ## For City
+    City = ('Bangalore','Pune','New Delhi')
+    City = list(range(len(City)))
+    City = st.selectbox("City",City, format_func=lambda x: City[x])
+    
+    ## For Age
+    Age = ('','')
+    Age = list(range(len(Age)))
+    Age = st.selectbox("Age",Age, format_func=lambda x: Age[x])
+    
+    ## For EverBenched
+    EverBenched = ('','')
+    EverBenched = list(range(len(EverBenched)))
+    EverBenched = st.selectbox("EverBenched",EverBenched, format_func=lambda x: EverBenched[x])
+    
+    ## For ExperienceInCurrentDomain
+    ExperienceInCurrentDomain = ('','')
+    ExperienceInCurrentDomain = list(range(len(ExperienceInCurrentDomain)))
+    ExperienceInCurrentDomain = st.selectbox("ExperienceInCurrentDomain",ExperienceInCurrentDomain, format_func=lambda x: EverBenched[x])
 
     ## For Credit Score
     # cred_display = ('Between 300 to 500','Above 500')
@@ -69,7 +69,7 @@ def prediction(Gender, Married, Dependents, Employment_Status, ApplicantIncome, 
     
     # Making predictions
     prediction = classifier.predict(
-        [[Gender, Married, Dependents, Employment_Status, ApplicantIncome, LoanAmount, Credit_History]])
+        [[Gender, Education, JoiningYear, City, Age, Gender, EverBenched, ExperienceInCurrentDomain]])
     
     if prediction == 0:
         pred = 'Rejected'
