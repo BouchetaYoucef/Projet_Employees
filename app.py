@@ -45,23 +45,19 @@ def main():
             gender = 1
         else :
             gender = 0
+
             
-        involve = st.selectbox('JoiningYear',['2012', '2013','2014','2015','2016','2017','2018'])
-        if involve == "":
-            job_inv = 1
-        elif involve == "":
+        # EverBenched = st.selectbox('EverBenched', ['Yes','No'])
+        # if EverBenched == "Yes" :
+        #     EverBenched = 1
+        # elif EverBenched== "yes" or "No" :
+        #     EverBenched = 2
+        # else :
+        #     EverBenched = 3
             
-        EverBenched = st.selectbox('EverBenched', ['Yes','No'])
-        if EverBenched == "Yes" :
-            EverBenched = 1
-        elif EverBenched== "yes" or "No" :
-            EverBenched = 2
-        else :
-            EverBenched = 3
+        JoiningYear = st.sidebar.slider('JoiningYear', 2012, 2013,2014,2015,2016,2017,2018)
             
-        Joining = st.sidebar.slider('JoiningYear', 2012, 2013,2014,2015,2016,2017,2018)
-            
-        inp = [age,City,education, Joining, gender,EverBenched]
+        inp = [age,City,education, JoiningYear, gender]
         
         return inp
     
