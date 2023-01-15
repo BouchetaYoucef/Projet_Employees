@@ -13,7 +13,7 @@ def run():
     # st.title("Bank Simplonien ")
 run()
 
-def prediction(Education, JoiningYear, City, Age, Gender, EverBenched, ExperienceInCurrentDomain):
+def prediction(Education, JoiningYear, City, PaymentTier, Age, Gender, EverBenched, ExperienceInCurrentDomain):
         
     #Pre-Processing user input
     ## For Education
@@ -22,29 +22,34 @@ def prediction(Education, JoiningYear, City, Age, Gender, EverBenched, Experienc
     Education = st.selectbox("Education", Education, format_func=lambda x: Education[x])
     
     ## For JoiningYear
-    JoiningYear = ('','')
+    JoiningYear = ('2012','2013','2014','2015','2016','2017','2018')
     JoiningYear = list(range(len(JoiningYear)))
-    JoiningYear = st.selectbox("JoiningYear",JoiningYear, format_func=lambda x: JoiningYear[x])
+    JoiningYear = st.sidebar("JoiningYear",JoiningYear, format_func=lambda x: JoiningYear[x])
     
-     ## For City
+    ## For City
     City = ('Bangalore','Pune','New Delhi')
     City = list(range(len(City)))
     City = st.selectbox("City",City, format_func=lambda x: City[x])
     
+    ## For PaymentTier
+    PaymentTier = ('1','2','3')
+    PaymentTier = list(range(len(PaymentTier)))
+    PaymentTier = st.selectbox("PaymentTier",PaymentTier, format_func=lambda x: City[x])
+    
     ## For Age
-    Age = ('','')
+    Age = ('22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41')
     Age = list(range(len(Age)))
     Age = st.selectbox("Age",Age, format_func=lambda x: Age[x])
     
     ## For EverBenched
-    EverBenched = ('','')
+    EverBenched = ('Yes','No')
     EverBenched = list(range(len(EverBenched)))
     EverBenched = st.selectbox("EverBenched",EverBenched, format_func=lambda x: EverBenched[x])
     
     ## For ExperienceInCurrentDomain
-    ExperienceInCurrentDomain = ('','')
+    ExperienceInCurrentDomain = ('0','1','2','3','4','5','6','7')
     ExperienceInCurrentDomain = list(range(len(ExperienceInCurrentDomain)))
-    ExperienceInCurrentDomain = st.selectbox("ExperienceInCurrentDomain",ExperienceInCurrentDomain, format_func=lambda x: EverBenched[x])
+    ExperienceInCurrentDomain = st.sidebar("ExperienceInCurrentDomain",ExperienceInCurrentDomain, format_func=lambda x: EverBenched[x])
 
     ## For Credit Score
     # cred_display = ('Between 300 to 500','Above 500')
@@ -68,7 +73,7 @@ def prediction(Education, JoiningYear, City, Age, Gender, EverBenched, Experienc
     # if st.button("Submit"):
     
     # Making predictions
-    prediction = classifier.predict(
+    prediction = KNC.predict(
         [[Gender, Education, JoiningYear, City, Age, Gender, EverBenched, ExperienceInCurrentDomain]])
     
     if prediction == 0:
@@ -90,13 +95,15 @@ def main():
     st.markdown(html_temp, unsafe_allow_html= True)
     
     # following lines create boxes in which user can enter data required to make prediction
-    Gender = st.selectbox('Gender',('Male','Female'))
-    Married = st.selectbox('Marital Status',('Unmarried','Maried'))
-    Dependents = st.selectbox('Dependents', ('1', '2', '3', '+' ))
-    Employment_Status = st.selectbox('Employment Status',('Job','Business'))
-    ApplicantIncome = st.number_input('Applicants monthly income')
-    LoanAmount = st.number_input('Total loan amount')
-    Credit_History = st.selectbox('Credit_History',('Unclear Debts','No Unclear Debts'))
+    Education = st.selectbox('Education',('Bachelors','Masters','PHD'))
+    JoiningYear = st.selectbox('JoiningYear',('Unmarried','Maried'))
+    City = st.selectbox('City', ('Bangalore', 'Pune', 'New Delhi'))
+    PaymentTier = st.selectbox('PaymentTier',('1','2','3'))
+    Age = st.number_input('Age',())
+    Gender = st.number_input('Gender')
+    EverBenched = st.selectbox('EverBenched',('Yes','No'))
+    ExperienceInCurrentDomain = st.sidebar('ExperienceInCurrentDomain',('',''))
+
     result =""
     
     df = input_features()
