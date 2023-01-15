@@ -34,8 +34,8 @@ def main():
         else :
             education = 0
         
-        expe = st.sidebar.slider('ExperienceInCurrentDomain', 1, 2000, 100)
-        if expe <1495 :
+        expe = st.sidebar.slider('ExperienceInCurrentDomain', 0, 1, 2, 3,4,5,6,7)
+        if expe  :
             emxpe = 0
         else:
             expe = 1
