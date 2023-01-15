@@ -40,29 +40,18 @@ def main():
         else:
             employeenumber = 1
             
-        envsat = st.selectbox('Environment Satisfaction',['Low', 'Medium','High'])
-        if envsat == "Low" :
-            env_sat = 1
-        else:
-            env_sat = 0
-            
         gend = st.selectbox('Gender', ['Male', 'Female'])
         if gend == "Male" :
             gender = 1
         else :
             gender = 0
             
-        involve = st.selectbox('Job Involvement',['Low', 'Medium','High','Very High'])
-        if involve == "Low":
+        involve = st.selectbox('JoiningYear',['2012', '2013','2014','2015','2016','2017','2018'])
+        if involve == "":
             job_inv = 1
-        elif involve == "Medium":
-            job_inv = 2
-        elif involve == "High":
-            job_inv = 3
-        else :
-            job_inv = 4
-        
-        role = st.selectbox('Job Role', ['Research Director','Manager','Healthcare Representative','Manufacturing Director','Lab Technician','Research Scientist','Sales Executive','HR','Sales Representative'])
+        elif involve == "":
+       
+         role = st.selectbox('Job Role', ['Research Director','Manager','Healthcare Representative','Manufacturing Director','Lab Technician','Research Scientist','Sales Executive','HR','Sales Representative'])
         if role == "Research Director" :
             jobrole = 0
         elif role == "Manager" or "Healthcare Representative" or "Manufacturing Director":
@@ -90,7 +79,7 @@ def main():
         else :
             mar_stat = 1
             
-        income = st.sidebar.slider('Monthly Income', 0, 50000, 5000)
+        Joining = st.sidebar.slider('JoiningYear', 2012, 2013,2014,2015,2016,2017,2018)
         
         num_worked = st.number_input('Number of companies worked',0.,10.,step = 1.)
         if num_worked <=4 :
@@ -128,19 +117,7 @@ def main():
         else :
             years_man = 2
             
-        com = st.selectbox("Communication Skills", ["Poor","Bad","Good", "Better", "Best"])
-        if com == "Poor" :
-            com_skills = 1
-        elif com == "Bad" :
-            com_skills = 2
-        elif com == "Good" :
-            com_skills =3
-        elif com == "Better":
-            com_skills = 4
-        else :
-            com_skills = 5
-            
-        inp = [age,City,education, employeenumber,env_sat, gender,job_inv,jobrole,EverBenched,mar_stat,income, num_com,overtime, stocks,ExperienceInCurrentDomain,training,years_com,years_role,years_man,com_skills]
+        inp = [age,City,education, Joining, gender,EverBenched,mar_stat,num_com,overtime, stocks,ExperienceInCurrentDomain,training,years_com,years_role,years_man]
         
         return inp
     
