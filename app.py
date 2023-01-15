@@ -46,6 +46,11 @@ def prediction(Education, JoiningYear, City, PaymentTier, Age, Gender, EverBench
     EverBenched = list(range(len(EverBenched)))
     EverBenched = st.selectbox("EverBenched",EverBenched, format_func=lambda x: EverBenched[x])
     
+    ## For Gender
+    Gender = ('Male','Female')
+    Gender = list(range(len(Gender)))
+    Gender = st.selectbox("Gender",EverBenched, format_func=lambda x: Gender[x])
+    
     ## For ExperienceInCurrentDomain
     ExperienceInCurrentDomain = ('0','1','2','3','4','5','6','7')
     ExperienceInCurrentDomain = list(range(len(ExperienceInCurrentDomain)))
@@ -96,13 +101,13 @@ def main():
     
     # following lines create boxes in which user can enter data required to make prediction
     Education = st.selectbox('Education',('Bachelors','Masters','PHD'))
-    JoiningYear = st.selectbox('JoiningYear',('Unmarried','Maried'))
+    JoiningYear = st.selectbox('JoiningYear',('2012','2013','2014','2015','2016','2017','2018'))
     City = st.selectbox('City', ('Bangalore', 'Pune', 'New Delhi'))
     PaymentTier = st.selectbox('PaymentTier',('1','2','3'))
-    Age = st.number_input('Age',())
-    Gender = st.number_input('Gender')
+    Age = st.number_input('Age',('22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41'))
+    Gender = st.number_input('Gender',('Male', 'Female'))
     EverBenched = st.selectbox('EverBenched',('Yes','No'))
-    ExperienceInCurrentDomain = st.sidebar('ExperienceInCurrentDomain',('',''))
+    ExperienceInCurrentDomain = st.sidebar('ExperienceInCurrentDomain',('0','1','2','3','4','5','6','7'))
 
     result =""
     
