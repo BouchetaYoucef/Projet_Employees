@@ -26,7 +26,7 @@ def main():
         else :
             City = 1
         
-        expe = st.sidebar.slider('ExperienceInCurrentDomain',0, 1, 2, 3,4,5,6,7)
+        # distancefromhome = st.sidebar.slider('Distance from home(km)',0,50,5)
         
         educ = st.selectbox('Education',['Bachelors','Masters','PHD'])
         if educ == "" or "" or "" :
@@ -34,11 +34,11 @@ def main():
         else :
             education = 0
         
-        # expe = st.sidebar('ExperienceInCurrentDomain', 0, 1, 2, 3,4,5,6,7)
-        # if expe  :
-        #     emxpe = 0
-        # else:
-        #     expe = 1
+        expe = st.sidebar.slider('ExperienceInCurrentDomain', 1, 2000, 100)
+        if expe <1495 :
+            emxpe = 0
+        else:
+            expe = 1
             
         # envsat = st.selectbox('Environment Satisfaction',['Low', 'Medium','High'])
         # if envsat == "Low" :
