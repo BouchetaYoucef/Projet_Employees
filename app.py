@@ -52,18 +52,18 @@ def prediction(Education, JoiningYear, City, Age, Gender, EverBenched, Experienc
     # cred = st.selectbox("Credit Score",cred_options, format_func=lambda x: cred_display[x])
 
     ## Applicant Monthly Income
-    mon_income = st.number_input("ApplicantIncome",value=0)
+    # mon_income = st.number_input("ApplicantIncome",value=0)
 
-    ## Co-Applicant Monthly Income
-    co_mon_income = st.number_input("CoApplicantIncome",value=0)
+    # ## Co-Applicant Monthly Income
+    # co_mon_income = st.number_input("CoApplicantIncome",value=0)
 
-    ## Loan AMount
-    loan_amt = st.number_input("Loan Amount",value=0)
+    # ## Loan AMount
+    # loan_amt = st.number_input("Loan Amount",value=0)
 
-    ## loan duration
-    dur_display = ['2 Month','6 Month','8 Month','1 Year','16 Month']
-    dur_options = range(len(dur_display))
-    dur = st.selectbox("Loan Duration",dur_options, format_func=lambda x: dur_display[x])
+    # ## loan duration
+    # dur_display = ['2 Month','6 Month','8 Month','1 Year','16 Month']
+    # dur_options = range(len(dur_display))
+    # dur = st.selectbox("Loan Duration",dur_options, format_func=lambda x: dur_display[x])
 
     # if st.button("Submit"):
     
@@ -81,8 +81,8 @@ def prediction(Education, JoiningYear, City, Age, Gender, EverBenched, Experienc
 def main():
     # front end elements of the web page
     html_temp = """
-    <div style ="background-color:blue;padding:13px">
-    <h1 style ="color:white;text-align:center;">Bank Simplonien</h1>
+    <div style ="background-color:yellow;padding:13px">
+    <h1 style ="color:white;text-align:center;">Attrition employee</h1>
     </div>
     """
     
