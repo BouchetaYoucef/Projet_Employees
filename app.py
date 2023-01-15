@@ -34,11 +34,11 @@ def main():
         else :
             education = 0
         
-        en = st.sidebar.slider('Number of people in the team', 1, 2000, 100)
-        if en <1495 :
-            employeenumber = 0
+        expe = st.sidebar.slider('ExperienceInCurrentDomain', 1, 2000, 100)
+        if expe <1495 :
+            emxpe = 0
         else:
-            employeenumber = 1
+            expe = 1
             
         # envsat = st.selectbox('Environment Satisfaction',['Low', 'Medium','High'])
         # if envsat == "Low" :
@@ -140,7 +140,7 @@ def main():
         # else :
         #     com_skills = 5
             
-        inp = [age,City,education, employeenumber,env_sat, gender,job_inv,jobrole,EverBenched,mar_stat,income, num_com,overtime, stocks]
+        inp = [age,City,education, expe, gender,EverBenched,income]
         
         return inp
     
