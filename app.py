@@ -24,7 +24,7 @@ def prediction(Education, JoiningYear, City, PaymentTier, Age, Gender, EverBench
     ## For JoiningYear
     JoiningYear = ('2012','2013','2014','2015','2016','2017','2018')
     JoiningYear = list(range(len(JoiningYear)))
-    JoiningYear = st.sidebar("JoiningYear",JoiningYear, format_func=lambda x: JoiningYear[x])
+    JoiningYear = st.selectbox("JoiningYear",JoiningYear, format_func=lambda x: JoiningYear[x])
     
     ## For City
     City = ('Bangalore','Pune','New Delhi')
@@ -49,7 +49,7 @@ def prediction(Education, JoiningYear, City, PaymentTier, Age, Gender, EverBench
     ## For ExperienceInCurrentDomain
     ExperienceInCurrentDomain = ('0','1','2','3','4','5','6','7')
     ExperienceInCurrentDomain = list(range(len(ExperienceInCurrentDomain)))
-    ExperienceInCurrentDomain = st.sidebar("ExperienceInCurrentDomain",ExperienceInCurrentDomain, format_func=lambda x: EverBenched[x])
+    ExperienceInCurrentDomain = st.selectbox("ExperienceInCurrentDomain",ExperienceInCurrentDomain, format_func=lambda x: EverBenched[x])
 
     ## For Credit Score
     # cred_display = ('Between 300 to 500','Above 500')
