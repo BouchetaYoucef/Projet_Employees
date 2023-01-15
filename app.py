@@ -90,7 +90,7 @@ def main():
         # else :
         #     mar_stat = 1
             
-        income = st.sidebar.slider('Monthly Income', 0, 50000, 5000)
+        payment = st.sidebar.slider('PaymentTier', 1, 2, 3)
         
         # num_worked = st.number_input('Number of companies worked',0.,10.,step = 1.)
         # if num_worked <=4 :
@@ -140,7 +140,7 @@ def main():
         # else :
         #     com_skills = 5
             
-        inp = [age,City,education, expe, gender,EverBenched,income]
+        inp = [age,City,education, expe, gender,EverBenched,payment]
         
         return inp
     
