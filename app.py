@@ -34,11 +34,6 @@ def main():
         else :
             education = 0
         
-        expe = st.sidebar.slider('ExperienceInCurrentDomain', 0, 1, 2, 3,4,5,6,7)
-        if expe  :
-            emxpe = 0
-        else:
-            expe = 1
             
         # envsat = st.selectbox('Environment Satisfaction',['Low', 'Medium','High'])
         # if envsat == "Low" :
@@ -140,7 +135,7 @@ def main():
         # else :
         #     com_skills = 5
             
-        inp = [age,City,education, expe, gender,EverBenched,payment]
+        inp = [age,City,education, gender,EverBenched,payment]
         
         return inp
     
