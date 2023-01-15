@@ -34,7 +34,7 @@ def main():
         else :
             education = 0
         
-        expe = st.selectbox('ExperienceInCurrentDomain', 0, 1, 2, 3,4,5,6,7)
+        expe = st.sidebar('ExperienceInCurrentDomain', 0, 1, 2, 3,4,5,6,7)
         if expe  :
             emxpe = 0
         else:
