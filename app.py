@@ -40,11 +40,11 @@ def main():
         else:
             employeenumber = 1
             
-        envsat = st.selectbox('Environment Satisfaction',['Low', 'Medium','High'])
-        if envsat == "Low" :
-            env_sat = 1
-        else:
-            env_sat = 0
+        # envsat = st.selectbox('Environment Satisfaction',['Low', 'Medium','High'])
+        # if envsat == "Low" :
+        #     env_sat = 1
+        # else:
+        #     env_sat = 0
             
         gend = st.selectbox('Gender', ['Male', 'Female'])
         if gend == "Male" :
@@ -52,29 +52,29 @@ def main():
         else :
             gender = 0
             
-        involve = st.selectbox('Job Involvement',['Low', 'Medium','High','Very High'])
-        if involve == "Low":
-            job_inv = 1
-        elif involve == "Medium":
-            job_inv = 2
-        elif involve == "High":
-            job_inv = 3
-        else :
-            job_inv = 4
+        # involve = st.selectbox('Job Involvement',['Low', 'Medium','High','Very High'])
+        # if involve == "Low":
+        #     job_inv = 1
+        # elif involve == "Medium":
+        #     job_inv = 2
+        # elif involve == "High":
+        #     job_inv = 3
+        # else :
+        #     job_inv = 4
         
-        role = st.selectbox('Job Role', ['Research Director','Manager','Healthcare Representative','Manufacturing Director','Lab Technician','Research Scientist','Sales Executive','HR','Sales Representative'])
-        if role == "Research Director" :
-            jobrole = 0
-        elif role == "Manager" or "Healthcare Representative" or "Manufacturing Director":
-            jobrole = 1
-        elif role == "Lab Technician" :
-            jobrole = 3
-        elif role == "Research Scientist" or "Sales Executive" :
-            jobrole = 2
-        elif role == "HR" :
-            jobrole = 4
-        else :
-            jobrole = 5
+        # role = st.selectbox('Job Role', ['Research Director','Manager','Healthcare Representative','Manufacturing Director','Lab Technician','Research Scientist','Sales Executive','HR','Sales Representative'])
+        # if role == "Research Director" :
+        #     jobrole = 0
+        # elif role == "Manager" or "Healthcare Representative" or "Manufacturing Director":
+        #     jobrole = 1
+        # elif role == "Lab Technician" :
+        #     jobrole = 3
+        # elif role == "Research Scientist" or "Sales Executive" :
+        #     jobrole = 2
+        # elif role == "HR" :
+        #     jobrole = 4
+        # else :
+        #     jobrole = 5
             
         EverBenched = st.selectbox('EverBenched', ['Yes','No'])
         if EverBenched == "Yes" :
@@ -84,63 +84,63 @@ def main():
         else :
             EverBenched = 3
             
-        mar = st.selectbox('Marital Status',['Married','Divorced','Single'])
-        if mar == "Married" or "Divorced" :
-            mar_stat = 0
-        else :
-            mar_stat = 1
+        # mar = st.selectbox('Marital Status',['Married','Divorced','Single'])
+        # if mar == "Married" or "Divorced" :
+        #     mar_stat = 0
+        # else :
+        #     mar_stat = 1
             
         income = st.sidebar.slider('Monthly Income', 0, 50000, 5000)
         
-        num_worked = st.number_input('Number of companies worked',0.,10.,step = 1.)
-        if num_worked <=4 :
-            num_com = 0
-        else :
-            num_com = 1
+        # num_worked = st.number_input('Number of companies worked',0.,10.,step = 1.)
+        # if num_worked <=4 :
+        #     num_com = 0
+        # else :
+        #     num_com = 1
             
-        otime = st.selectbox("Does the employee work overtime?",['No', 'Yes'])
-        if otime == "No" :
-            overtime = 0
-        else :
-            overtime = 1
+        # otime = st.selectbox("Does the employee work overtime?",['No', 'Yes'])
+        # if otime == "No" :
+        #     overtime = 0
+        # else :
+        #     overtime = 1
             
-        sol = st.selectbox('Stock of employee in the company', ["No stocks", "Moderate stocks", "Lots of stocks"])
-        if sol == "No stocks" :
-            stocks = 0 
-        elif sol == "Moderate stocks" :
-            stocks = 1 
-        else :
-            stocks = 2
+        # sol = st.selectbox('Stock of employee in the company', ["No stocks", "Moderate stocks", "Lots of stocks"])
+        # if sol == "No stocks" :
+        #     stocks = 0 
+        # elif sol == "Moderate stocks" :
+        #     stocks = 1 
+        # else :
+        #     stocks = 2
             
-        ExperienceInCurrentDomain = st.number_input("Experience In Current Domain",0.,7.,step = 1.)
+        # ExperienceInCurrentDomain = st.number_input("Experience In Current Domain",0.,7.,step = 1.)
         
-        training = st.number_input("Number of times employee did training",0.,7., step = 1.)
+        # training = st.number_input("Number of times employee did training",0.,7., step = 1.)
         
-        years_com = st.number_input("Number of years spent in company",0.,30., step = 1.)
+        # years_com = st.number_input("Number of years spent in company",0.,30., step = 1.)
         
-        years_role = st.number_input("Number of years in current role",0.,30., step = 1.)
+        # years_role = st.number_input("Number of years in current role",0.,30., step = 1.)
         
-        ym = st.number_input("Years with current manager",0.,20., step = 1.)
-        if ym == 0 :
-            years_man = 0 
-        elif ym < 12 :
-            years_man = 1
-        else :
-            years_man = 2
+        # ym = st.number_input("Years with current manager",0.,20., step = 1.)
+        # if ym == 0 :
+        #     years_man = 0 
+        # elif ym < 12 :
+        #     years_man = 1
+        # else :
+        #     years_man = 2
             
-        com = st.selectbox("Communication Skills", ["Poor","Bad","Good", "Better", "Best"])
-        if com == "Poor" :
-            com_skills = 1
-        elif com == "Bad" :
-            com_skills = 2
-        elif com == "Good" :
-            com_skills =3
-        elif com == "Better":
-            com_skills = 4
-        else :
-            com_skills = 5
+        # com = st.selectbox("Communication Skills", ["Poor","Bad","Good", "Better", "Best"])
+        # if com == "Poor" :
+        #     com_skills = 1
+        # elif com == "Bad" :
+        #     com_skills = 2
+        # elif com == "Good" :
+        #     com_skills =3
+        # elif com == "Better":
+        #     com_skills = 4
+        # else :
+        #     com_skills = 5
             
-        inp = [age,City,education, employeenumber,env_sat, gender,job_inv,jobrole,EverBenched,mar_stat,income, num_com,overtime, stocks,ExperienceInCurrentDomain,training,years_com,years_role,years_man,com_skills]
+        inp = [age,City,education, employeenumber,env_sat, gender,job_inv,jobrole,EverBenched,mar_stat,income, num_com,overtime, stocks]
         
         return inp
     
