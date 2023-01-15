@@ -13,136 +13,91 @@ def run():
     # st.title("Bank Simplonien ")
 run()
 
+def prediction(Gender, Married, Dependents, Employment_Status, ApplicantIncome, LoanAmount, Credit_History):
+        
+    #Pre-Processing user input
+    ## For gender
+    gen_display = ('Female','Male')
+    gen_options = list(range(len(gen_display)))
+    gen = st.selectbox("Gender",gen_options, format_func=lambda x: gen_display[x])
+
+    ## For Marital Status
+    mar_display = ('No','Yes')
+    mar_options = list(range(len(mar_display)))
+    mar = st.selectbox("Marital Status", mar_options, format_func=lambda x: mar_display[x])
+
+    ## No of dependets
+    dep_display = ('0','1','2','3', '+')
+    dep_options = list(range(len(dep_display)))
+    dep = st.selectbox("Dependents",  dep_options, format_func=lambda x: dep_display[x])
+
+    ## For edu
+    edu_display = ('Not Graduate','Graduate')
+    edu_options = list(range(len(edu_display)))
+    edu = st.selectbox("Education",edu_options, format_func=lambda x: edu_display[x])
+
+    ## For emp status
+    emp_display = ('Job','Business')
+    emp_options = list(range(len(emp_display)))
+    emp = st.selectbox("Employment_Status",emp_options, format_func=lambda x: emp_display[x])
+
+    ## For Property status
+    prop_display = ('Rural','Semi-Urban','Urban')
+    prop_options = list(range(len(prop_display)))
+    prop = st.selectbox("Property Area",prop_options, format_func=lambda x: prop_display[x])
+
+    ## For Credit Score
+    # cred_display = ('Between 300 to 500','Above 500')
+    # cred_options = list(range(len(cred_display)))
+    # cred = st.selectbox("Credit Score",cred_options, format_func=lambda x: cred_display[x])
+
+    ## Applicant Monthly Income
+    mon_income = st.number_input("ApplicantIncome",value=0)
+
+    ## Co-Applicant Monthly Income
+    co_mon_income = st.number_input("CoApplicantIncome",value=0)
+
+    ## Loan AMount
+    loan_amt = st.number_input("Loan Amount",value=0)
+
+    ## loan duration
+    dur_display = ['2 Month','6 Month','8 Month','1 Year','16 Month']
+    dur_options = range(len(dur_display))
+    dur = st.selectbox("Loan Duration",dur_options, format_func=lambda x: dur_display[x])
+
+    # if st.button("Submit"):
+    
+    # Making predictions
+    prediction = classifier.predict(
+        [[Gender, Married, Dependents, Employment_Status, ApplicantIncome, LoanAmount, Credit_History]])
+    
+    if prediction == 0:
+        pred = 'Rejected'
+    else:
+        pred = 'Approved'
+    return pred
+
+# this is the main function in which we define our webpage
 def main():
-    st.header('Employee Attrition Predictor')
-    # st.subheader(""" Made with :heart: by Pranav Garg and Swapnil Srivastava """)
-    def input_features() :
-        st.sidebar.header('Slide the sliders to change the variables.')
-        age = st.sidebar.slider('Age of employee', 22,41,35)
-        
-        City = st.selectbox('City', ['Bangalor', 'Pume City', 'New Delhi'])
-        if City == "" or "" :
-            City = 0
-        else :
-            City = 1
-        
-        # distancefromhome = st.sidebar.slider('Distance from home(km)',0,50,5)
-        
-        educ = st.selectbox('Education',['Bachelors','Masters','PHD'])
-        if educ == "" or "" or "" :
-            education = 1
-        else :
-            education = 0
-        
-        expe = st.sidebar.slider('ExperienceInCurrentDomain', 0, 1, 2, 3, 4, 5, 6, 7)
-        if expe <1495 :
-            emxpe = 0
-        else:
-            expe = 1
-            
-        # envsat = st.selectbox('Environment Satisfaction',['Low', 'Medium','High'])
-        # if envsat == "Low" :
-        #     env_sat = 1
-        # else:
-        #     env_sat = 0
-            
-        gend = st.selectbox('Gender', ['Male', 'Female'])
-        if gend == "Male" :
-            gender = 1
-        else :
-            gender = 0
-            
-        # involve = st.selectbox('Job Involvement',['Low', 'Medium','High','Very High'])
-        # if involve == "Low":
-        #     job_inv = 1
-        # elif involve == "Medium":
-        #     job_inv = 2
-        # elif involve == "High":
-        #     job_inv = 3
-        # else :
-        #     job_inv = 4
-        
-        # role = st.selectbox('Job Role', ['Research Director','Manager','Healthcare Representative','Manufacturing Director','Lab Technician','Research Scientist','Sales Executive','HR','Sales Representative'])
-        # if role == "Research Director" :
-        #     jobrole = 0
-        # elif role == "Manager" or "Healthcare Representative" or "Manufacturing Director":
-        #     jobrole = 1
-        # elif role == "Lab Technician" :
-        #     jobrole = 3
-        # elif role == "Research Scientist" or "Sales Executive" :
-        #     jobrole = 2
-        # elif role == "HR" :
-        #     jobrole = 4
-        # else :
-        #     jobrole = 5
-            
-        EverBenched = st.selectbox('EverBenched', ['Yes','No'])
-        if EverBenched == "Yes" :
-            EverBenched = 1
-        elif EverBenched== "yes" or "No" :
-            EverBenched = 2
-        else :
-            EverBenched = 3
-            
-        # mar = st.selectbox('Marital Status',['Married','Divorced','Single'])
-        # if mar == "Married" or "Divorced" :
-        #     mar_stat = 0
-        # else :
-        #     mar_stat = 1
-            
-        payment = st.sidebar.slider('PaymentTier', 1, 2, 3)
-        
-        # num_worked = st.number_input('Number of companies worked',0.,10.,step = 1.)
-        # if num_worked <=4 :
-        #     num_com = 0
-        # else :
-        #     num_com = 1
-            
-        # otime = st.selectbox("Does the employee work overtime?",['No', 'Yes'])
-        # if otime == "No" :
-        #     overtime = 0
-        # else :
-        #     overtime = 1
-            
-        # sol = st.selectbox('Stock of employee in the company', ["No stocks", "Moderate stocks", "Lots of stocks"])
-        # if sol == "No stocks" :
-        #     stocks = 0 
-        # elif sol == "Moderate stocks" :
-        #     stocks = 1 
-        # else :
-        #     stocks = 2
-            
-        # ExperienceInCurrentDomain = st.number_input("Experience In Current Domain",0.,7.,step = 1.)
-        
-        # training = st.number_input("Number of times employee did training",0.,7., step = 1.)
-        
-        # years_com = st.number_input("Number of years spent in company",0.,30., step = 1.)
-        
-        # years_role = st.number_input("Number of years in current role",0.,30., step = 1.)
-        
-        # ym = st.number_input("Years with current manager",0.,20., step = 1.)
-        # if ym == 0 :
-        #     years_man = 0 
-        # elif ym < 12 :
-        #     years_man = 1
-        # else :
-        #     years_man = 2
-            
-        # com = st.selectbox("Communication Skills", ["Poor","Bad","Good", "Better", "Best"])
-        # if com == "Poor" :
-        #     com_skills = 1
-        # elif com == "Bad" :
-        #     com_skills = 2
-        # elif com == "Good" :
-        #     com_skills =3
-        # elif com == "Better":
-        #     com_skills = 4
-        # else :
-        #     com_skills = 5
-            
-        inp = [age,City,education, expe, gender,EverBenched,payment]
-        
-        return inp
+    # front end elements of the web page
+    html_temp = """
+    <div style ="background-color:blue;padding:13px">
+    <h1 style ="color:white;text-align:center;">Bank Simplonien</h1>
+    </div>
+    """
+    
+    # display the front end aspect
+    st.markdown(html_temp, unsafe_allow_html= True)
+    
+    # following lines create boxes in which user can enter data required to make prediction
+    Gender = st.selectbox('Gender',('Male','Female'))
+    Married = st.selectbox('Marital Status',('Unmarried','Maried'))
+    Dependents = st.selectbox('Dependents', ('1', '2', '3', '+' ))
+    Employment_Status = st.selectbox('Employment Status',('Job','Business'))
+    ApplicantIncome = st.number_input('Applicants monthly income')
+    LoanAmount = st.number_input('Total loan amount')
+    Credit_History = st.selectbox('Credit_History',('Unclear Debts','No Unclear Debts'))
+    result =""
     
     df = input_features()
     model = pickle.load(open('model_pkl.pickle.pkl','rb'))
