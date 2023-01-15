@@ -104,10 +104,10 @@ def main():
     JoiningYear = st.selectbox('JoiningYear',('2012','2013','2014','2015','2016','2017','2018'))
     City = st.selectbox('City', ('Bangalore', 'Pune', 'New Delhi'))
     PaymentTier = st.selectbox('PaymentTier',('1','2','3'))
-    Age = st.number_input('Age',('22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41'))
-    Gender = st.number_input('Gender',('Male', 'Female'))
+    Age = st.selectbox('Age',('22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41'))
+    Gender = st.selectbox('Gender',('Male', 'Female'))
     EverBenched = st.selectbox('EverBenched',('Yes','No'))
-    ExperienceInCurrentDomain = st.sidebar('ExperienceInCurrentDomain',('0','1','2','3','4','5','6','7'))
+    ExperienceInCurrentDomain = st.selectbox('ExperienceInCurrentDomain',('0','1','2','3','4','5','6','7'))
 
     result =""
     
