@@ -6,11 +6,11 @@ from PIL import Image
 
 model = pickle.load (open ('model.pkl','rb'))
 
-def run():
-    img1 = Image.open('Employees.jpg')
-    img1 = img1.resize((700,300))
-    st.image(img1,use_column_width=False)
-run()
+# def run():
+#     img1 = Image.open('Employees.jpg')
+#     img1 = img1.resize((700,300))
+#     st.image(img1,use_column_width=False)
+# run()
 
 def prediction(Education, JoiningYear, City, PaymentTier, Age, Gender, EverBenched, ExperienceInCurrentDomain):
         
