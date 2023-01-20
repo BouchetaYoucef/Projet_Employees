@@ -19,7 +19,11 @@ Gender = st.number_input('Gender',step=1)
 
 EverBenched = st.number_input('EverBenched', step=1)
 
-ExperienceInCurrentDomain = st.number_input('ExperienceInCurrentDomain',step=1)
+# ExperienceInCurrentDomain = st.number_input('ExperienceInCurrentDomain',step=1)
+
+ExperienceInCurrentDomain["ExperienceInCurrentDomain"] = st.number_input(
+        "Experience in Current Field", min_value=0, step=1, value=1
+    )
 
 # lat = st.text_input('latitude')
 
