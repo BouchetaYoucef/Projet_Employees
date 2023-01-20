@@ -17,7 +17,12 @@ City = st.selectbox("City",City, format_func=lambda x: City[x])
 
 PaymentTier = st.number_input('PaymentTier',step=1)
 
-Age = st.number_input('Age', step=1)
+# Age = st.number_input('Age', step=1)
+
+## For Age
+Age = ('22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41')
+Age = list(range(len(Age)))
+Age = st.selectbox("Age",Age, format_func=lambda x: Age[x])
 
 Gender = st.number_input('Gender',step=1)
 
