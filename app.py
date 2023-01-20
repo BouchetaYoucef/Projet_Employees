@@ -10,11 +10,10 @@ Education = st.number_input('Education',step=1)
 JoiningYear = st.number_input('JoiningYear', step=1)
 
 # City = st.number_input('City',step=1)
-
-City = st.selectbox(
-        "City Office Where Posted",
-        options=["Bangalore", "Pune", "New Delhi"],
-    )
+## For City
+City = ('Bangalore','Pune','New Delhi')
+City = list(range(len(City)))
+City = st.selectbox("City",City, format_func=lambda x: City[x])
 
 PaymentTier = st.number_input('PaymentTier',step=1)
 
