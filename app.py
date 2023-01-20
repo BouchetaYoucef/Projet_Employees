@@ -9,7 +9,12 @@ Education = st.number_input('Education',step=1)
 
 JoiningYear = st.number_input('JoiningYear', step=1)
 
-City = st.number_input('City',step=1)
+# City = st.number_input('City',step=1)
+
+City = st.selectbox(
+        "City Office Where Posted",
+        options=["Bangalore", "Pune", "New Delhi"],
+    )
 
 PaymentTier = st.number_input('PaymentTier',step=1)
 
@@ -19,11 +24,7 @@ Gender = st.number_input('Gender',step=1)
 
 EverBenched = st.number_input('EverBenched', step=1)
 
-# ExperienceInCurrentDomain = st.number_input('ExperienceInCurrentDomain',step=1)
-
-ExperienceInCurrentDomain["ExperienceInCurrentDomain"] = st.number_input(
-        "Experience in Current Field", min_value=0, step=1, value=1
-    )
+ExperienceInCurrentDomain = st.number_input('ExperienceInCurrentDomain',step=1)
 
 # lat = st.text_input('latitude')
 
