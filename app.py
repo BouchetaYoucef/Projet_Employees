@@ -6,7 +6,7 @@ with open('model_pkl2.pickle', 'rb') as f:
     model = pickle.load(f)
     
 img1 = open('Employees.jpg')
-img1 = img1.resize((150, 150))
+img1 = img1.resize((200, 150))
 st.image(img1, use_column_width=False)
 
 Education = st.number_input('Education',step=1)
